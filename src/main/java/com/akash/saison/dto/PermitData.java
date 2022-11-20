@@ -17,6 +17,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PermitData {
-
     private List<Permit> permits;
 }
