@@ -4,6 +4,7 @@ import com.akash.saison.dto.Permit;
 import com.akash.saison.service.IPermitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,5 +34,10 @@ public class FoodTruckPermitController {
     @RequestMapping(value = "/address", method = RequestMethod.GET)
     public List<Permit> getByAddress(@RequestParam String street){
         return permitService.getByAddress(street.trim());
+    }
+
+    @RequestMapping(value = "/applicant", method = RequestMethod.POST)
+    public List<Permit> addFoodTruckEntry(@RequestBody Permit application){
+        return permitService.addFoodTruckEntry(application);
     }
 }

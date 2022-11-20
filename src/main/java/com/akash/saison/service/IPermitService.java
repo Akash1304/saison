@@ -11,4 +11,6 @@ public interface IPermitService {
     List<Permit> getExpiredPermits(Date expirationDate);
 
     List<Permit> getByAddress(String address);
+
+    List<Permit> addFoodTruckEntry(Permit permit);
 }

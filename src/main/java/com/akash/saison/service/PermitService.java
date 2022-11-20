@@ -54,4 +54,17 @@ public class PermitService implements IPermitService {
 
         return applicants;
     }
+
+    @Override
+    public List<Permit> addFoodTruckEntry(Permit permit) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(baseUrl);
+        permits.add(permit);
+        List<Permit> applicants = restClient.get(uriComponentsBuilder.build().toString(), HttpHeaderUtil.getHeaderJsonData(), new ParameterizedTypeReference<List<Permit>>(){});
+        if(applicants==null || applicants.isEmpty()){
+            applicants = permits;
+        }else{
+            applicants.addAll(permits);
+        }
+        return applicants;
+    }
 }
