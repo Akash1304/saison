@@ -40,4 +40,9 @@ public class FoodTruckPermitController {
     public List<Permit> addFoodTruckEntry(@RequestBody Permit application){
         return permitService.addFoodTruckEntry(application);
     }
+
+    @RequestMapping(value = "/closestTruck", method = RequestMethod.POST)
+    public List<Permit> closestTruck(@RequestBody Permit.Location location){
+        return permitService.closestTruck(location);
+    }
 }

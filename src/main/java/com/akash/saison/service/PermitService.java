@@ -67,4 +67,13 @@ public class PermitService implements IPermitService {
         }
         return applicants;
     }
+
+    @Override
+    public List<Permit> closestTruck(Permit.Location location) {
+            String query = "distance_in_meters(location, 'POINT(" + location.getLongitude() + " " + location.getLatitude() + ")')&$limit=1&$select=*, distance_in_meters(location, 'POINT("+ location.getLongitude() + " " + location.getLatitude() +")') AS range";
+            System.out.println(query);
+            UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(baseUrl).queryParam("$order", query);
+            List<Permit> nearestTruck = restClient.get(uriComponentsBuilder.build().toString(), HttpHeaderUtil.getHeaderJsonData(), new ParameterizedTypeReference<List<Permit>>(){});
+            return nearestTruck;
+    }
 }
