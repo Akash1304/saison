@@ -9,4 +9,6 @@ import java.util.List;
 public interface IPermitService {
     List<Permit> getByApplicantName(String applicant);
     List<Permit> getExpiredPermits(Date expirationDate);
+
+    List<Permit> getByAddress(String address);
 }

@@ -46,4 +46,12 @@ public class PermitService implements IPermitService {
 
         return applicants;
     }
+
+    @Override
+    public List<Permit> getByAddress(String address) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(baseUrl).queryParam("address", address);
+        List<Permit> applicants = restClient.get(uriComponentsBuilder.build().toString(), HttpHeaderUtil.getHeaderJsonData(), new ParameterizedTypeReference<List<Permit>>(){});
+
+        return applicants;
+    }
 }

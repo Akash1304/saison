@@ -21,12 +21,17 @@ public class FoodTruckPermitController {
 
     @RequestMapping(value = "/applicant", method = RequestMethod.GET)
     public List<Permit> getByApplicantName(@RequestParam String name){
-        return permitService.getByApplicantName(name);
+        return permitService.getByApplicantName(name.trim());
     }
 
 
     @RequestMapping(value = "/expiredPermits", method = RequestMethod.GET)
     public List<Permit> getExpiredPermits(@RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date expirationdate){
         return permitService.getExpiredPermits(expirationdate);
+    }
+
+    @RequestMapping(value = "/address", method = RequestMethod.GET)
+    public List<Permit> getByAddress(@RequestParam String street){
+        return permitService.getByAddress(street.trim());
     }
 }
